@@ -1,13 +1,79 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base{
+    body{
+        @apply bg-slate-100
+    }
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer components{
+
+    .label{
+        @apply flex justify-between
+    }
+    .input{
+        @apply border-2 w-full max-w-xs mx-2 text-sm p-0.5 pl-1 rounded-md
+        transition-all
+    }
+    .c-input{
+        @apply input max-w-none mx-0
+    }
+    .textarea{
+        @apply input
+
+    }
+    .select{
+        @apply input
+
+    }
+    .button{
+        @apply text-center border-2 font-normal rounded-md mx-2 text-sm py-0.5 px-2
+        transition-all
+    }
+    .button-dark{
+        @apply button bg-slate-700 text-white border-slate-700
+        hover:bg-slate-900 hover:border-slate-900
+    }
+    .button-dark-ol{
+        @apply button bg-slate-700 bg-opacity-0 border-slate-700 text-slate-700
+        hover:bg-opacity-10
+    }
+    .button-light{
+        @apply button bg-slate-100 text-slate-900 border-slate-100
+        hover:bg-slate-300 hover:border-slate-300
+    }
+    .button-light-ol{
+        @apply button bg-slate-100 bg-opacity-0 border-slate-100 text-slate-100
+        hover:bg-opacity-10
+    }
+    h1{
+        @apply text-slate-800 font-bold text-2xl
+    }
+    h2{
+        @apply text-slate-800 font-semibold text-xl
+    }
+    h3{
+        @apply text-slate-700 font-semibold text-base
+    }
+    input{
+        @apply m-1
+    }
+    .p1{
+        @apply text-slate-700 font-normal text-sm
+    }
+    .article{
+        @apply text-slate-700 font-normal text-base
+    }
+    .main-grid{
+        @apply grid gap-16 xl:grid-cols-3
+    }
+    .content-col{
+        @apply xl:col-span-2
+    }
+    .card{
+        @apply bg-white p-0 rounded-lg
+    }
 }
