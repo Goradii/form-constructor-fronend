@@ -16,6 +16,7 @@ const AnswersPage = () => {
         return response.data
     }
 
+
     async function getForm(formUid: string | undefined){
         const response = await axios.post(API_URL, {"jsonrpc": "2.0", "id": 1, "method": "show_form", "params":{"uid": formUid}})
         return response.data
