@@ -69,7 +69,7 @@ const FormConstructorPage = () => {
         setNextId(nextId + 1)
     }
     return (
-        <div className='container max-w-3xl'>
+        <div className='container max-w-3xl mb-20'>
             <form id={formName} name={formName}>
                 <FormHeaderConstructor header={header} setHeader={setHeader}></FormHeaderConstructor>
                 {fields.map(val => ( <BaseFieldConstructor key={val.id} formTarget={formName} form={fields} changeForm={setFields} type={val.type} id={val.id} deleteField={delField}></BaseFieldConstructor> ))}

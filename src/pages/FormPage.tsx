@@ -34,7 +34,7 @@ const FormPage = () => {
         val => answers = answers.concat({id: val.id, value: ''})
     )
     return (
-        <div className='container max-w-3xl mt-5'>
+        <div className='container max-w-3xl mt-5 mb-20'>
             <form>
                 <div className='w-4/5 mx-auto p-1 items-center'>
                     <label className='label'><h1>{formData.result?.title}</h1></label>

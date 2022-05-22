@@ -29,7 +29,7 @@ const AnswersPage = () => {
         getForm(formUid).then(data => setFormData(data))
     }
     return (
-        <div className='container max-w-7xl mt-5'>
+        <div className='container max-w-7xl mt-5 mb-20'>
             <div className='w-4/5 mx-auto p-1 items-center'>
                 <label className='label'><h1>{formData.result?.title}</h1></label>
                 <label className='label'><h2>{formData.result?.description}</h2></label>

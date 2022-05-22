@@ -41,14 +41,6 @@
         @apply button bg-slate-700 bg-opacity-0 border-slate-700 text-slate-700
         hover:bg-opacity-10
     }
-    .button-light{
-        @apply button bg-slate-100 text-slate-900 border-slate-100
-        hover:bg-slate-300 hover:border-slate-300
-    }
-    .button-light-ol{
-        @apply button bg-slate-100 bg-opacity-0 border-slate-100 text-slate-100
-        hover:bg-opacity-10
-    }
     h1{
         @apply text-slate-800 font-bold text-2xl
     }
@@ -60,20 +52,5 @@
     }
     input{
         @apply m-1
-    }
-    .p1{
-        @apply text-slate-700 font-normal text-sm
-    }
-    .article{
-        @apply text-slate-700 font-normal text-base
-    }
-    .main-grid{
-        @apply grid gap-16 xl:grid-cols-3
-    }
-    .content-col{
-        @apply xl:col-span-2
-    }
-    .card{
-        @apply bg-white p-0 rounded-lg
     }
 }
