@@ -14,7 +14,6 @@ const BaseField = ({val, answers, setAnswers}:IBaseFieldVal) => {
             ? newAnswers = newAnswers.concat(me)
             : newAnswers = newAnswers.concat(item)
         }
-        console.log(newAnswers)
         setAnswers(newAnswers)
     }
     return (

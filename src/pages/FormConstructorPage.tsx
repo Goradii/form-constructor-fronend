@@ -42,9 +42,8 @@ const FormConstructorPage = () => {
                 "fields": fields
             }
         }
-        console.log(params)
-        const response: {url: string, data: IJsonRpcFormResponse} = await sendApiQuery("new_form", params) 
-        navigate(`/form/${response.data.result}`)
+        const response: IJsonRpcFormResponse = await sendApiQuery("new_form", params)
+        navigate(`/form/${response.result}`)
     }
 
     async function delField(id: number, e: React.MouseEvent){

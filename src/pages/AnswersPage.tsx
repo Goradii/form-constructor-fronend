@@ -14,13 +14,13 @@ const AnswersPage = () => {
     const { formUid } = useParams<{ formUid?: string }>()
 
     async function getAnswers(formUid: string | undefined){
-        const response = await sendApiQuery("show_form", {"form_uid": formUid})
-        return response.data
+        const response = await sendApiQuery("show_answers_by_form", {"form_uid": formUid})
+        return response
     }
 
     async function getForm(formUid: string | undefined){
         const response = await sendApiQuery("show_form", {"uid": formUid})
-        return response.data
+        return response
     }
 
     if (entry === false){
@@ -28,7 +28,6 @@ const AnswersPage = () => {
         getAnswers(formUid).then(data => setFormAnswersData(data))
         getForm(formUid).then(data => setFormData(data))
     }
-    console.log(formAnswersData)
     return (
         <div className='container max-w-7xl mt-5'>
             <div className='w-4/5 mx-auto p-1 items-center'>

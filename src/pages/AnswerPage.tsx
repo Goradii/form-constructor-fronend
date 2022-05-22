@@ -13,12 +13,12 @@ const AnswersPage = () => {
 
     async function getAnswer(answerUid: string | undefined, id?: number){
         const response = await sendApiQuery("show_answer", {"uid": answerUid}, id) 
-        return response.data
+        return response
     }
 
     async function getForm(formUid: string | undefined, id?: number){
         const response = await sendApiQuery("show_form", {"uid": formUid}, id) 
-        return response.data
+        return response
     }
 
     if (entry === false){
@@ -26,9 +26,6 @@ const AnswersPage = () => {
         getAnswer(answerUid).then(data => setFormAnswerData(data))
         getForm(formUid).then(data => setFormData(data))
     }
-
-    console.log(formAnswerData)
-    console.log(formData)
     return (
         <div className='container max-w-5xl mt-5'>
             <div className='w-4/5 mx-auto p-1 items-center'>
@@ -37,10 +34,10 @@ const AnswersPage = () => {
             </div>
             <div className='w-4/5 mx-auto p-1 items-center'>
                 {formData.result?.fields.map(field => (
-                    <div key={field.id} className='mx-auto w-4/5 border-2 p-1 rounded-md mb-3'>
+                    <div key={field.id} className='mx-auto border-2 p-1 rounded-md mb-3'>
                         <label><h2>{field.title}</h2></label>
                         {formAnswerData.result?.answers.map(answer => (
-                            answer.id === field.id && <label key={answer.id}><h3>{answer.value}</h3></label>
+                            answer.id === field.id && <label key={answer.id}><h3 className='ml-5'>{answer.value}</h3></label>
                         ))}
                     </div>
                 ))}

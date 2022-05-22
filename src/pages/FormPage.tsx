@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { sendApiQuery } from '../api';
 import BaseField from '../components/BaseField';
 import { IFieldAnswer, IJsonRpcFormResponse } from '../Interfaces';
@@ -9,21 +9,20 @@ const FormPage = () => {
     const [formData, setFormData] = useState<IJsonRpcFormResponse>({jsonrpc: ''})
     const [entry, setEntry] = useState(false)
     let [answers, setAnswers] = useState<IFieldAnswer[]>([])
+    const navigate = useNavigate()
 
     const { uid } = useParams<{ uid?: string }>()
 
     async function getForm(formUid: string | undefined){
         const response = await sendApiQuery("show_form", {"uid": formUid})
-        return response.data
+        return response
     }
 
     async function sendForm(e: React.MouseEvent){
         e.preventDefault()
         const params = {"data":{"uid": uid, "answers": answers}}
-        const response = await sendApiQuery("show_form", params)
-        console.log(params)
-        console.log(response.data)
-        return response.data
+        const response = await sendApiQuery("submit_form", params)
+        navigate(`/answers/${uid}/${response.result}`)
     }
 
     if (entry === false){
