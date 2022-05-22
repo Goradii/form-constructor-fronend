@@ -43,7 +43,7 @@ const FormConstructorPage = () => {
             }
         }
         const response: IJsonRpcFormResponse = await sendApiQuery("new_form", params)
-        navigate(`/form/${response.result}`)
+        navigate(`/${response.result}`)
     }
 
     async function delField(id: number, e: React.MouseEvent){
