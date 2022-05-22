@@ -1,9 +1,8 @@
-import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { sendApiQuery } from "../api";
 import BaseFieldConstructor from "../components/BaseFieldConstructor";
 import FormHeaderConstructor from "../components/FormHeaderConstructor";
-import { API_URL } from "../config";
 import { IBaseFieldConstructor, IJsonRpcFormResponse } from "../Interfaces";
 
 const FormConstructorPage = () => {
@@ -36,20 +35,15 @@ const FormConstructorPage = () => {
 
     async function onSubmit(e: React.MouseEvent){
         e.preventDefault()
-        const r_body = {
-            "jsonrpc": "2.0",
-            "id": 0, "method":
-            "new_form",
-            "params": {
-                "form_data":{
-                    "title": header.title,
-                    "description": header.description,
-                    "fields": fields
-                }
+        const params = {
+            "form_data":{
+                "title": header.title,
+                "description": header.description,
+                "fields": fields
             }
         }
-        console.log(r_body)
-        const response: {url: string, data: IJsonRpcFormResponse}  = await axios.post(API_URL, r_body)
+        console.log(params)
+        const response: {url: string, data: IJsonRpcFormResponse} = await sendApiQuery("new_form", params) 
         navigate(`/form/${response.data.result}`)
     }
 

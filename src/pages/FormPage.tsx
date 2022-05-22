@@ -1,8 +1,7 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom'
+import { sendApiQuery } from '../api';
 import BaseField from '../components/BaseField';
-import { API_URL } from '../config';
 import { IFieldAnswer, IJsonRpcFormResponse } from '../Interfaces';
 
 
@@ -14,15 +13,15 @@ const FormPage = () => {
     const { uid } = useParams<{ uid?: string }>()
 
     async function getForm(formUid: string | undefined){
-        const response = await axios.post(API_URL, {"jsonrpc": "2.0", "id": 0, "method": "show_form", "params":{"uid": formUid}})
+        const response = await sendApiQuery("show_form", {"uid": formUid})
         return response.data
     }
 
     async function sendForm(e: React.MouseEvent){
         e.preventDefault()
-        const body = {"jsonrpc": "2.0", "id": 0, "method": "submit_form", "params": {"data":{"uid": uid, "answers": answers}}}
-        const response = await axios.post(API_URL, body)
-        console.log(body)
+        const params = {"data":{"uid": uid, "answers": answers}}
+        const response = await sendApiQuery("show_form", params)
+        console.log(params)
         console.log(response.data)
         return response.data
     }

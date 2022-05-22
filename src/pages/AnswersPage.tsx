@@ -1,9 +1,8 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom'
+import { sendApiQuery } from '../api';
 import AnswerRow from '../components/AnswerRow';
 import AnswersHeader from '../components/AnswersHeader';
-import { API_URL } from '../config';
 import { IJsonRpcAnswersResponse, IJsonRpcFormResponse } from '../Interfaces';
 
 
@@ -15,12 +14,12 @@ const AnswersPage = () => {
     const { formUid } = useParams<{ formUid?: string }>()
 
     async function getAnswers(formUid: string | undefined){
-        const response = await axios.post(API_URL, {"jsonrpc": "2.0", "id": 0, "method": "show_answers_by_form", "params":{"form_uid": formUid}})
+        const response = await sendApiQuery("show_form", {"form_uid": formUid})
         return response.data
     }
 
     async function getForm(formUid: string | undefined){
-        const response = await axios.post(API_URL, {"jsonrpc": "2.0", "id": 1, "method": "show_form", "params":{"uid": formUid}})
+        const response = await sendApiQuery("show_form", {"uid": formUid})
         return response.data
     }
 

@@ -1,7 +1,6 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom'
-import { API_URL } from '../config';
+import { sendApiQuery } from '../api';
 import { IJsonRpcAnswerResponse, IJsonRpcFormResponse } from '../Interfaces';
 
 
@@ -11,21 +10,23 @@ const AnswersPage = () => {
     const [entry, setEntry] = useState(false)
 
     const { formUid, answerUid } = useParams<{ formUid?: string, answerUid?: string }>()
-    async function getAnswer(answerUid: string | undefined){
-        const response = await axios.post(API_URL, {"jsonrpc": "2.0", "id": 0, "method": "show_answer", "params":{"uid": answerUid}})
+
+    async function getAnswer(answerUid: string | undefined, id?: number){
+        const response = await sendApiQuery("show_answer", {"uid": answerUid}, id) 
         return response.data
     }
 
-
-    async function getForm(formUid: string | undefined){
-        const response = await axios.post(API_URL, {"jsonrpc": "2.0", "id": 1, "method": "show_form", "params":{"uid": formUid}})
+    async function getForm(formUid: string | undefined, id?: number){
+        const response = await sendApiQuery("show_form", {"uid": formUid}, id) 
         return response.data
     }
+
     if (entry === false){
         setEntry(true)
         getAnswer(answerUid).then(data => setFormAnswerData(data))
         getForm(formUid).then(data => setFormData(data))
     }
+
     console.log(formAnswerData)
     console.log(formData)
     return (
