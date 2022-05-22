@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const API_URL = 'http://127.0.0.1:8888/jrpc/v1/forms'
+const API_URL = `${process.env.API_HOST}/jrpc/v1/forms`
 
 export async function sendApiQuery(method: string, params: object, id: number = 0){
     const body = {"jsonrpc": "2.0", "id": id, "method": method, "params": params}
